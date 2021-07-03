@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthorizationController {
 
-    private UserService userService;
-    private JwtProvider jwtProvider;
+    private final UserService userService;
+    private final JwtProvider jwtProvider;
 
     @PostMapping
     public AuthResponse auth(AuthRequest authRequest){

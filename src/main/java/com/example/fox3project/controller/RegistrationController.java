@@ -15,7 +15,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class RegistrationController {
 
-    private UserService userService;
+    private final UserService userService;
 
     @PostMapping
     public UserCreateResponse add(@Valid UserCreateRequest userCreateRequest){
