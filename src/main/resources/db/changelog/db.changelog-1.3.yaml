@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4
+      author: anya
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: user_role
+            constraintName: fk_user_role
+            referencedColumnNames: id
+            referencedTableName: users
