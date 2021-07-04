@@ -1,11 +1,8 @@
 package com.example.fox3project.security;
 
 import com.example.fox3project.entity.User;
-import com.example.fox3project.entity.dto.get.response.UserGetResponse;
-import com.example.fox3project.mapper.UserMapper;
-import com.example.fox3project.service.UserService;
+import com.example.fox3project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
@@ -14,13 +11,14 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private UserService userService;
-    private UserMapper userMapper;
+    private final UserRepository userRepository;
+//    private final UserMapper userMapper;
 
     @Override
-    public CustomUserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        UserGetResponse userGetResponse = userService.findByLogin(login);
-        User user = userMapper.mapUserGetResponseToUser(userGetResponse);
-        return CustomUserDetails.mapUserToCustomUserDetails(user);
+    public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username).orElseThrow(() ->
+                new UsernameNotFoundException("User Not Found with username: " + username + " not found")
+        );
+        return CustomUserDetails.build(user);
     }
 }

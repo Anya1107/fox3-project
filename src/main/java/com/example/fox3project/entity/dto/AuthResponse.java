@@ -1,16 +1,23 @@
 package com.example.fox3project.entity.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class AuthResponse {
     private String token;
+    private String type = "Bearer";
+    private String username;
+    private String email;
+    private List<String> roles;
+
+    public AuthResponse(String token, String username, String email, List<String> roles) {
+        this.token = token;
+        this.username = username;
+        this.email = email;
+        this.roles = roles;
+    }
 }

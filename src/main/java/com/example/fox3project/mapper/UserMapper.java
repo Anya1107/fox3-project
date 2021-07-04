@@ -18,7 +18,8 @@ public class UserMapper {
 
     public User mapCreateUserRequestToUser(UserCreateRequest userCreateRequest){
         return User.builder()
-                .login(userCreateRequest.getLogin())
+                .username(userCreateRequest.getUsername())
+                .email(userCreateRequest.getEmail())
                 .password(userCreateRequest.getPassword())
                 .age(userCreateRequest.getAge())
                 .build();
@@ -27,15 +28,17 @@ public class UserMapper {
     public UserCreateResponse mapUserToUserCreateResponse(User user){
         return UserCreateResponse.builder()
                 .id(user.getId())
-                .login(user.getLogin())
-                .password(user.getPassword())
+                .username(user.getUsername())
+                .email(user.getEmail())
                 .age(user.getAge())
+                .roles(user.getRoles())
                 .build();
     }
 
     public User mapUpdateUserRequestToUser(UserUpdateRequest userUpdateRequest){
         return User.builder()
-                .login(userUpdateRequest.getLogin())
+                .username(userUpdateRequest.getUsername())
+                .email(userUpdateRequest.getEmail())
                 .password(userUpdateRequest.getPassword())
                 .age(userUpdateRequest.getAge())
                 .build();
@@ -44,8 +47,8 @@ public class UserMapper {
     public UserUpdateResponse mapUserToUpdateUserResponse(User user){
         return UserUpdateResponse.builder()
                 .id(user.getId())
-                .login(user.getLogin())
-                .password(user.getPassword())
+                .username(user.getUsername())
+                .email(user.getEmail())
                 .age(user.getAge())
                 .build();
     }
@@ -53,16 +56,10 @@ public class UserMapper {
     public UserGetResponse mapUserToUserGetResponse(User user){
         return UserGetResponse.builder()
                 .id(user.getId())
-                .login(user.getLogin())
-                .password(user.getPassword())
-                .build();
-    }
-
-    public User mapUserGetResponseToUser(UserGetResponse userGetResponse){
-        return User.builder()
-                .id(userGetResponse.getId())
-                .login(userGetResponse.getLogin())
-                .password(userGetResponse.getPassword())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .age(user.getAge())
+                .roles(user.getRoles())
                 .build();
     }
 

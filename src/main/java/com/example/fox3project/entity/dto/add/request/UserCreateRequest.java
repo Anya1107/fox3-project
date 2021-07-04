@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotEmpty;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -14,12 +14,9 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 @Builder
 public class UserCreateRequest {
-    @NotEmpty
-    private String login;
-
-    @NotEmpty
+    private String username;
+    private String email;
     private String password;
-
-    @NotEmpty
     private int age;
+    private Set<String> roles;
 }
