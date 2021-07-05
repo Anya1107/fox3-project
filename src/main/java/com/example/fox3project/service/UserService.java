@@ -29,7 +29,8 @@ public class UserService {
 
     @Transactional
     public void delete(long id) {
-        User user = userRepository.findById(id).orElseThrow(NullPointerException::new);
+        User user = userRepository.findById(id).orElseThrow(() ->
+                new NotFoundException("User with id: " + id + " not found", "findById"));
         userRepository.delete(user);
     }
 
@@ -49,7 +50,8 @@ public class UserService {
     }
 
     public UserUpdateResponse update(long id, UserUpdateRequest userUpdateRequest) {
-        User user = userRepository.findById(id).orElseThrow(NullPointerException::new);
+        User user = userRepository.findById(id).orElseThrow(() ->
+                new NotFoundException("User with id: " + id + " not found", "findById"));
         updateUserFromRequestDto(userUpdateRequest, user);
         user = userRepository.save(user);
         return userMapper.mapUserToUpdateUserResponse(user);
