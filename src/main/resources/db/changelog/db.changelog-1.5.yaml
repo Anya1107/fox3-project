@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 6
+      author: anya
+      changes:
+        - addUniqueConstraint:
+            columnNames: username
+            tableName: users
+        - addUniqueConstraint:
+            columnNames: email
+            tableName: users
